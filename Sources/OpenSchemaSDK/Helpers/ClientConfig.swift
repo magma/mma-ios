@@ -20,13 +20,13 @@ public class ClientConfig {
     ///Shared ClientConfig Singleton.
     public static let shared = ClientConfig()
     ///It is the server controller URL.
-    private let CONTROLLER_ADDRESS : String
+    private var CONTROLLER_ADDRESS : String
     ///Port to be used to connect to Controller Address
-    private let CONTROLLER_PORT : Int
+    private var CONTROLLER_PORT : Int
     ///Server Bootstrap Controller URL
-    private let BOOTSTRAPPER_CONTROLLER_ADDRESS : String
+    private var BOOTSTRAPPER_CONTROLLER_ADDRESS : String
     ///Server Metrics Controller URL
-    private let METRICS_AUTHORITY_HEADER : String
+    private var METRICS_AUTHORITY_HEADER : String
     
     ///Initialize singleton class. Currently uses magma server address.
     private init() {
@@ -35,7 +35,14 @@ public class ClientConfig {
         self.BOOTSTRAPPER_CONTROLLER_ADDRESS = "bootstrapper-" + CONTROLLER_ADDRESS
         self.METRICS_AUTHORITY_HEADER = "metricsd-" + CONTROLLER_ADDRESS
     }
-
+    
+    public func setControllerAddress(controllerAddress : String ) { self.CONTROLLER_ADDRESS = controllerAddress}
+    
+    public func setControllerPort(controllerPort : Int ) { self.CONTROLLER_PORT = controllerPort}
+    
+    public func setControllerAddress(bootstrapperControllerAddress : String ) { self.BOOTSTRAPPER_CONTROLLER_ADDRESS = bootstrapperControllerAddress}
+    
+    public func setMetricsAuthorityHeader(metricsAuthorityHeader : String) { self.METRICS_AUTHORITY_HEADER = metricsAuthorityHeader}
 
     ///This function retrieves Controller Address.
     public func getControllerAddress() -> String { return self.CONTROLLER_ADDRESS }
